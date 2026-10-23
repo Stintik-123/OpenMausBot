@@ -10,6 +10,7 @@ import zhTw from "./zh-tw.json";
 import uk from "./uk.json";
 import vi from "./vi.json";
 import tr from "./tr.json";
+import ru from "./ru.json";
 
 export { en };
 export type LocaleKey = keyof typeof en;
@@ -32,6 +33,7 @@ export const locales: Record<string, LocalePack> = {
   uk,
   vi,
   tr,
+  ru,
 };
 
 export const localeChoices: ReadonlyArray<{ code: string; label: string }> = [
@@ -42,6 +44,7 @@ export const localeChoices: ReadonlyArray<{ code: string; label: string }> = [
   { code: "hi", label: "हिन्दी" },
   { code: "ja", label: "日本語" },
   { code: "pt-br", label: "Português (Brasil)" },
+  { code: "ru", label: "Русский" },
   { code: "zh", label: "简体中文" },
   { code: "zh-tw", label: "繁體中文（台灣）" },
   { code: "uk", label: "Українська" },
