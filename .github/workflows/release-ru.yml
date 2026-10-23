@@ -1,0 +1,42 @@
+name: Release Russian locale pack
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag name'
+        required: true
+        default: 'ru-v0.1.0'
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pack setup zip
+        run: |
+          mkdir -p /tmp/ru-pack/src/locales
+          cp src/locales/ru.json /tmp/ru-pack/src/locales/
+          cp setup-ru.sh setup-ru.bat /tmp/ru-pack/ 2>/dev/null || true
+          cp scripts/install-ru-locale.sh /tmp/ru-pack/ 2>/dev/null || true
+          cp docs/russian.md /tmp/ru-pack/README.md 2>/dev/null || true
+          cd /tmp/ru-pack && zip -r "$GITHUB_WORKSPACE/OpenMausBot-ru-setup.zip" .
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag }}
+          name: Russian locale ${{ inputs.tag }}
+          body: |
+            ## Русская локализация OpenMausBot
+
+            Скачайте **OpenMausBot-ru-setup.zip**, распакуйте в корень клона и:
+
+            ```bash
+            bash setup-ru.sh
+            pnpm install
+            pnpm dev
+            ```
+
+            Затем: **Настройки → Общие → Русский**.
+          files: OpenMausBot-ru-setup.zip
+          generate_release_notes: false
