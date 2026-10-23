@@ -1,1 +1,10 @@
-PLACEHOLDER
+{
+  "settings.title": "Настройки",
+  "settings.search": "Поиск",
+  "settings.section.general": "Общие",
+  "settings.section.engines": "Провайдеры моделей",
+  "settings.section.connections": "API-ключи",
+  "engines.cloud": "Облако",
+  "engines.local": "Локально",
+  "model.effort.balanced": "Сбалансировано"
+}
